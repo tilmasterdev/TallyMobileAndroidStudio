@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TallyMobile</string>
+    <string name="default_web_client_id">784033785836-157on09627c7a44460vu88noj2jmjpev.apps.googleusercontent.com</string>
+    <string name="validate">Validate</string>
+    <string name="tally_net_id">Tally Serial Number</string>
+    <string name="tally_password">Create Password</string>
+    <string name="enter_your_tally_credentials">Enter Your Tally Credentials</string>
+    <string name="confirm_your_tally_password">Confirm Your Password</string>
+    <string name="enter_the_detail_to_create_new_item">Enter the detail to create new Item</string>
+    <string name="product_name">Product name</string>
+    <string name="path_number">Part Number</string>
+    <string name="enter_units">Enter Units</string>
+    <string name="enter_hsn_code">Enter HSN Code</string>
+    <string name="enter_gst_percentage">Enter Gst Percentage</string>
+    <string name="create_item">Create Item</string>
+    <string name="product_description">Product Description</string>
+    <string name="enter_mrp">Enter MRP</string>
+    <string name="enter_purchase_price">Enter Purchase Price</string>
+    <string name="enter_sell_price">Enter Sells Price</string>
+    <string name="please_wait">Please Wait…</string>
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "784033785836",
+    "project_id": "tallymobile-7a511",
+    "storage_bucket": "tallymobile-7a511.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784033785836:android:9effebe505e2ef84fc82c9",
+        "android_client_info": {
+          "package_name": "com.socialtools.tallymobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784033785836-157on09627c7a44460vu88noj2jmjpev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm0OL3My6EqhAw640v3VHnZ9bdl_-xuwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784033785836-157on09627c7a44460vu88noj2jmjpev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

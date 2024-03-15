@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TallyMobile.Night" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primaryText</item>
+        <item name="colorPrimaryDark">@color/primaryColor</item>
+        <item name="colorAccent">@color/primaryText</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+    </style>
+
+    <style name="Theme.TallyMobile" parent="Base.Theme.TallyMobile.Night"/>
+
+    <style name="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="viewParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="modifiedEditText" parent="parent">
+        <item name="android:textSize">@dimen/newsMoreTextSize</item>
+    </style>
+</resources>

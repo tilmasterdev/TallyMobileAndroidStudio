@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Dark theme colors -->
+    <color name="primaryColor">#15202B  </color> <!-- Adjusted to a dark blue color  #15202B -->
+    <color name="secondaryColor">#192734</color> <!-- Dark background color #192734-->
+    <color name="primaryText">#E6E0E9</color>
+    <color name="secondaryText">#E6E0E9</color>
+    <color name="input_background">#22303C</color> <!-- Dark input background color -->
+    <color name="icon_background">#20FFFFFF</color>
+
+
+    <color name="wheatWhite">#f9f9f9</color>
+
+
+    <!-- Google colors adapted for dark theme -->
+    <color name="googleRed">#DB4437</color>
+    <color name="googleBlue">#4285F4</color>
+    <color name="googleYellow">#F4B400</color>
+    <color name="googleGreen">#0F9D58</color>
+</resources>
