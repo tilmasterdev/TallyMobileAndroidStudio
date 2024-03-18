@@ -2,18 +2,14 @@ package com.socialtools.tallymobile;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.socialtools.tallymobile.Utils.Constants;
 import com.socialtools.tallymobile.Utils.LoadingDialog;
@@ -23,9 +19,8 @@ import com.socialtools.tallymobile.databinding.ActivityCreateItemBinding;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.Random;
+
 
 public class CreateItemActivity extends AppCompatActivity {
 

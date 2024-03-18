@@ -14,15 +14,15 @@ public class Constants {
     public static final String KEY_COLLECTION_ITEMS = "products";
 
 
-    public static final String KEY_USERNAME = "username";
-    public static final String KEY_USER_EMAIL = "email_address";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_USER_EMAIL = "email";
     public static final String KEY_USER_ID = "userId";
     public static final String KEY_IS_SIGNED_IN = "isSignIn";
-    public static final String KEY_TALLY_ID = "tallyId";
-    public static final String KEY_TALLY_PASSWORD = "tallyPassword";
+    public static final String KEY_TALLY_ID = "tallySerialNo";
+    public static final String KEY_PASSWORD = "password";
 
 
-    public static final String KEY_IS_SUPER_ADMIN = "isSuperAdmin";
+    public static final String KEY_IS_ADMIN = "isAdmin";
 
 
     public static final String KEY_PRODUCT_DESCRIPTION = "productDescription";
@@ -38,4 +38,23 @@ public class Constants {
     public static final String KEY_PROFILE_IMAGE = "imageUrl";
     public static final String KEY_IS_SYNCED = "isSynced";
     public static final String KEY_DATE = "createdAt";
+    public static final String KEY_AUTH_ID = "authId";
+    public static final String KEY_SUCCESS = "success";
+    public static final String KEY_USER = "user";
+    public static final String KEY_COMPANY_ID = "companyId";
+    public static final String KEY_MONGO_ID = "_id";
+    public static final String KEY_COMPANY_OWNER_ID = "ownerId";
+    public static final String KEY_JOINING_DATE = "joiningDate";
+    public static final String KEY_CREATE_AT = "createdAt";
+
+
+
+    public static final String KEY_GET_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/getuser/";
+    public static final String KEY_UPDATE_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/update/";
+    public static final String KEY_ISEXIST_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/isexist/";
+    public static final String KEY_POST_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/save";
+    public static final String KEY_CREATE_COMPANY_API = "https://tally-mobile-core-api.vercel.app/api/v1/company/create";
+
+
+  
 }
