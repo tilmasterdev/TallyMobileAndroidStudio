@@ -10,12 +10,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.socialtools.tallymobile.Utils.ApiHandler;
 import com.socialtools.tallymobile.Utils.Constants;
 import com.socialtools.tallymobile.Utils.LoadingDialog;
 import com.socialtools.tallymobile.Utils.PreferenceManager;
 import com.socialtools.tallymobile.databinding.ActivityCreateItemBinding;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -29,12 +35,14 @@ public class CreateItemActivity extends AppCompatActivity {
     private FirebaseFirestore database;
     private PreferenceManager preferenceManager;
     private LoadingDialog loadingDialog;
+    private ApiHandler apiHandler ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCreateItemBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        apiHandler = new ApiHandler(this);
         database = FirebaseFirestore.getInstance();
         loadingDialog = new LoadingDialog(this);
         preferenceManager=new PreferenceManager(this);
@@ -125,21 +133,65 @@ public class CreateItemActivity extends AppCompatActivity {
 
     private void createItemInServer(){
         loading(true);
-        HashMap<String,Object> product = new HashMap<>();
-        product.put(Constants.KEY_PRODUCT_NAME,productName);
-        product.put(Constants.KEY_PRODUCT_DESCRIPTION,productDescription);
-        product.put(Constants.KEY_PRODUCT_PART_NUMBER,partNumber);
-        product.put(Constants.KEY_PRODUCT_UOM,uom);
-        product.put(Constants.KEY_PRODUCT_HSN_CODE,hsnCode);
-        product.put(Constants.KEY_PRODUCT_MRP,mrp);
-        product.put(Constants.KEY_PRODUCT_GST,gst);
-        product.put(Constants.KEY_IS_SYNCED,false);
-        product.put(Constants.KEY_DATE,new Date());
-        product.put(Constants.KEY_PRODUCT_PURCHASE_PRICE,purchasePrice);
-        product.put(Constants.KEY_PRODUCT_SELLS_PRICE,sellPrice);
+
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put(Constants.KEY_PRODUCT_NAME, productName);
+            requestBody.put(Constants.KEY_PRODUCT_DESCRIPTION, productDescription);
+            requestBody.put(Constants.KEY_PRODUCT_PART_NUMBER, partNumber);
+            requestBody.put(Constants.KEY_PRODUCT_UOM, uom);
+            requestBody.put(Constants.KEY_PRODUCT_HSN_CODE, hsnCode);
+            requestBody.put(Constants.KEY_PRODUCT_MRP, mrp);
+            requestBody.put(Constants.KEY_PRODUCT_PURCHASE_PRICE, purchasePrice);
+            requestBody.put(Constants.KEY_PRODUCT_SELLS_PRICE, sellPrice);
+            requestBody.put(Constants.KEY_COMPANY_ID, preferenceManager.getString(Constants.KEY_COMPANY_ID));
+            requestBody.put(Constants.KEY_PRODUCT_CREATOR_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        apiHandler.makeApiCall(Constants.KEY_CREATE_ITEM_API,
+                Request.Method.POST, requestBody, new ApiHandler.ApiResponseListener() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        // Handle success response
+                        try {
+
+                            boolean success = response.getBoolean(Constants.KEY_SUCCESS);
+                            String errorMessage = response.getString("message");
+
+                            if (success) {
+                                Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                                loading(false);
+                                loadingDialog.dismiss();
+                            }else{
+                                loading(false);
+                                loadingDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            loading(false);
+                            loadingDialog.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Error parsing JSON response", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(VolleyError error) {
+                        // Handle error
+                        loadingDialog.dismiss();
+                        loading(false);
+
+                        Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
-        database.collection(Constants.KEY_COLLECTION_COMPANY)
+
+       /* database.collection(Constants.KEY_COLLECTION_COMPANY)
                 .document(preferenceManager.getString(Constants.KEY_TALLY_ID))
                 .collection(Constants.KEY_COLLECTION_ITEMS)
                 .add(product)
@@ -162,7 +214,7 @@ public class CreateItemActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     // Handle errors here
-                });
+                });*/
 
     }
 

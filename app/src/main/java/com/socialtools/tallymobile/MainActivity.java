@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.socialtools.tallymobile.Utils.ApiCaller;
+import com.socialtools.tallymobile.Utils.ApiHandler;
 import com.socialtools.tallymobile.Utils.Constants;
 import com.socialtools.tallymobile.Utils.LoadingDialog;
 import com.socialtools.tallymobile.Utils.PreferenceManager;
@@ -34,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private LoadingDialog loadingDialog;
     GoogleSignInClient googleSignInClient;
     FirebaseFirestore database;
-    private static final String API_URL = "https://tally-mobile-core-api.vercel.app/api/v1/users/getuser";
-    private static final String DYNAMIC_VALUE = "123abc456";
+    private ApiHandler apiHandler ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         preferenceManager = new PreferenceManager(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        apiHandler = new ApiHandler(this);
         loadingDialog= new LoadingDialog(this);
         database = FirebaseFirestore.getInstance();
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         binding.itemCreateBtn.setOnClickListener(v->{
 
 
-          //  startActivity(new Intent(getApplicationContext(),CreateItemActivity.class));
+           startActivity(new Intent(getApplicationContext(),CreateItemActivity.class));
         });
     }
 
@@ -87,50 +90,49 @@ public class MainActivity extends AppCompatActivity {
 
     private void getUserDetails(){
 
-        new ApiCaller().fetchDataFromApi(this, Constants.KEY_GET_USER_DATA_API + preferenceManager.getString(Constants.KEY_AUTH_ID),
-                Request.Method.GET, null,loadingDialog, response -> {
-                    try {
 
-                        // Parse the JSON response
-                        JSONObject jsonResponse = new JSONObject(response);
-                        boolean success = jsonResponse.getBoolean(Constants.KEY_SUCCESS);
+        apiHandler.makeApiCall(Constants.KEY_GET_USER_DATA_API + preferenceManager.getString(Constants.KEY_AUTH_ID),
+                Request.Method.GET, null, new ApiHandler.ApiResponseListener() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        // Handle success response
+                        try {
+
+                            boolean success = response.getBoolean(Constants.KEY_SUCCESS);
+                            String message = response.getString("message");
+
                         if (success) {
 
-                            JSONObject companyData = jsonResponse.getJSONObject("data").getJSONObject("company");
-                            JSONObject userData = jsonResponse.getJSONObject("data").getJSONObject(Constants.KEY_USER);
-
-                            preferenceManager.putString(Constants.KEY_TALLY_ID, companyData.getString(Constants.KEY_TALLY_ID));
-                            preferenceManager.putString(Constants.KEY_PASSWORD, companyData.getString(Constants.KEY_PASSWORD));
-                            preferenceManager.putString(Constants.KEY_COMPANY_ID, companyData.getString(Constants.KEY_MONGO_ID));
-                            preferenceManager.putString(Constants.KEY_COMPANY_OWNER_ID, companyData.getString(Constants.KEY_COMPANY_OWNER_ID));
-
+                            JSONObject userData = response.getJSONObject(Constants.KEY_USER);
+                            preferenceManager.putString(Constants.KEY_TALLY_ID, userData.getString(Constants.KEY_TALLY_ID));
+                            preferenceManager.putString(Constants.KEY_PASSWORD, userData.getString(Constants.KEY_PASSWORD));
+                            preferenceManager.putString(Constants.KEY_COMPANY_ID, userData.getString(Constants.KEY_COMPANY_ID));
                             preferenceManager.putString(Constants.KEY_USER_ID, userData.getString(Constants.KEY_MONGO_ID));
                             preferenceManager.putString(Constants.KEY_NAME, userData.getString(Constants.KEY_NAME));
                             preferenceManager.putString(Constants.KEY_AUTH_ID, userData.getString(Constants.KEY_AUTH_ID));
                             preferenceManager.putString(Constants.KEY_PROFILE_IMAGE, userData.getString(Constants.KEY_PROFILE_IMAGE));
                             preferenceManager.putString(Constants.KEY_USER_EMAIL, userData.getString(Constants.KEY_USER_EMAIL));
-                            preferenceManager.putString(Constants.KEY_TALLY_ID, userData.getString(Constants.KEY_TALLY_ID));
                             preferenceManager.putString(Constants.KEY_JOINING_DATE, userData.getString(Constants.KEY_CREATE_AT));
-                            preferenceManager.putString(Constants.KEY_IS_ADMIN, userData.getString(Constants.KEY_IS_ADMIN));
-                            preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                            preferenceManager.putBoolean(Constants.KEY_IS_ADMIN, userData.getBoolean(Constants.KEY_IS_ADMIN));
                             loadingDialog.dismiss();
                         }else{
-
-                            String errorMessage = jsonResponse.getString("message");
-                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
-
+                            loadingDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                         }
 
-                    }catch (JSONException e){
-                        e.printStackTrace();
-                        Log.e(TAG, "Error parsing JSON response: " + e.getMessage());
+                        } catch (JSONException e) {
+
+                            loadingDialog.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Error parsing JSON response", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
-                    loadingDialog.dismiss();
-                },
-                error -> {
-                    Log.d(TAG, "Response: "+error);
-                    loadingDialog.dismiss();
+                    @Override
+                    public void onError(VolleyError error) {
+                        // Handle error
+                        Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 });
 
 
@@ -139,22 +141,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*database.collection(Constants.KEY_COLLECTION_USERS)
-                .document(preferenceManager.getString(Constants.KEY_USER_ID))
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()){
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()){
-                            Toast.makeText(this, "updated", Toast.LENGTH_SHORT).show();
-                            preferenceManager.putString(Constants.KEY_TALLY_ID,document.getString(Constants.KEY_TALLY_ID));
-                            preferenceManager.putString(Constants.KEY_TALLY_PASSWORD,document.getString(Constants.KEY_TALLY_PASSWORD));
-                            preferenceManager.putString(Constants.KEY_PROFILE_IMAGE,document.getString(Constants.KEY_PROFILE_IMAGE));
-                        }
-                    }
-                }).addOnFailureListener(e->{
-                    Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                });*/
     }
 
 }

@@ -2,12 +2,12 @@ package com.socialtools.tallymobile;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -15,25 +15,16 @@ import com.android.volley.VolleyError;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.socialtools.tallymobile.Utils.ApiCaller;
 import com.socialtools.tallymobile.Utils.ApiHandler;
 import com.socialtools.tallymobile.Utils.Constants;
 import com.socialtools.tallymobile.Utils.LoadingDialog;
 import com.socialtools.tallymobile.Utils.PreferenceManager;
 import com.socialtools.tallymobile.databinding.ActivityTallyCredentialsBinding;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.Objects;
 
 public class TallyCredentialsActivity extends AppCompatActivity {
@@ -107,7 +98,7 @@ public class TallyCredentialsActivity extends AppCompatActivity {
                     uploadDataAsAdmin();
 
                 }).setNegativeButton("SignIn as Employee", (dialog, which) -> {
-                        uploadDataAsEmployee();
+                      //  uploadDataAsEmployee();
                 }).show();
     }
 
@@ -121,7 +112,6 @@ public class TallyCredentialsActivity extends AppCompatActivity {
             try {
                 requestBody.put(Constants.KEY_TALLY_ID, tallyId);
                 requestBody.put(Constants.KEY_PASSWORD, password);
-                requestBody.put(Constants.KEY_IS_ADMIN, false);
                 requestBody.put(Constants.KEY_USER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
 
             } catch (JSONException e) {
@@ -217,7 +207,7 @@ public class TallyCredentialsActivity extends AppCompatActivity {
 
 
 
-            apiHandler.makeApiCall(Constants.KEY_CREATE_COMPANY_API,
+            apiHandler.makeApiCall(Constants.KEY_CREATE_EMPLOYEE_API,
                     Request.Method.POST, requestBody, new ApiHandler.ApiResponseListener() {
                         @Override
                         public void onSuccess(JSONObject response) {
@@ -439,7 +429,7 @@ public class TallyCredentialsActivity extends AppCompatActivity {
             try {
                 requestBody.put(Constants.KEY_TALLY_ID, tallyId);
                 requestBody.put(Constants.KEY_PASSWORD, password);
-                requestBody.put(Constants.KEY_IS_ADMIN, true);
+                requestBody.put(Constants.KEY_USER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -471,7 +461,7 @@ public class TallyCredentialsActivity extends AppCompatActivity {
                                     preferenceManager.putString(Constants.KEY_USER_EMAIL,userData.getString(Constants.KEY_USER_EMAIL));
                                     preferenceManager.putString(Constants.KEY_TALLY_ID,userData.getString(Constants.KEY_TALLY_ID));
                                     preferenceManager.putString(Constants.KEY_JOINING_DATE,userData.getString(Constants.KEY_CREATE_AT));
-                                    preferenceManager.putString(Constants.KEY_IS_ADMIN,userData.getString(Constants.KEY_IS_ADMIN));
+                                    preferenceManager.putBoolean(Constants.KEY_IS_ADMIN,userData.getBoolean(Constants.KEY_IS_ADMIN));
                                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
 
                                     Toast.makeText(getApplicationContext(), "Signing Successful", Toast.LENGTH_SHORT).show();
