@@ -10,6 +10,7 @@
     <color name="secondaryText">#15202B</color>
     <color name="input_background">#ECECEC</color>
     <color name="icon_background">#20FFFFFF</color>
+    <color name="fab_text">#FF49454F</color>
 
 
     <color name="googleRed">#DB4437</color>

@@ -51,7 +51,7 @@ public class Constants {
 
     public static final String KEY_GET_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/getuser/";
     public static final String KEY_UPDATE_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/update/";
-    public static final String KEY_ISEXIST_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/isexist/";
+    public static final String KEY_IS_EXIST_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/isexist/";
     public static final String KEY_POST_USER_DATA_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/save";
     public static final String KEY_CREATE_COMPANY_API = "https://tally-mobile-core-api.vercel.app/api/v1/company/create";
     public static final String KEY_CREATE_EMPLOYEE_API = "https://tally-mobile-core-api.vercel.app/api/v1/users/employee/create";

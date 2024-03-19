@@ -140,6 +140,7 @@ public class CreateItemActivity extends AppCompatActivity {
             requestBody.put(Constants.KEY_PRODUCT_DESCRIPTION, productDescription);
             requestBody.put(Constants.KEY_PRODUCT_PART_NUMBER, partNumber);
             requestBody.put(Constants.KEY_PRODUCT_UOM, uom);
+            requestBody.put(Constants.KEY_PRODUCT_GST,gst);
             requestBody.put(Constants.KEY_PRODUCT_HSN_CODE, hsnCode);
             requestBody.put(Constants.KEY_PRODUCT_MRP, mrp);
             requestBody.put(Constants.KEY_PRODUCT_PURCHASE_PRICE, purchasePrice);
@@ -189,32 +190,10 @@ public class CreateItemActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-       /* database.collection(Constants.KEY_COLLECTION_COMPANY)
-                .document(preferenceManager.getString(Constants.KEY_TALLY_ID))
-                .collection(Constants.KEY_COLLECTION_ITEMS)
-                .add(product)
-                .addOnSuccessListener(documentReference -> {
-                    String generatedId = documentReference.getId();
-                    database.collection(Constants.KEY_COLLECTION_COMPANY)
-                            .document(preferenceManager.getString(Constants.KEY_TALLY_ID))
-                            .collection(Constants.KEY_COLLECTION_ITEMS)
-                            .document(generatedId)
-                            .update(Constants.KEY_PRODUCT_ID,generatedId)
-                            .addOnSuccessListener(aVoid->{
-                                loading(false);
-                                Toast.makeText(this, "Item created successfully", Toast.LENGTH_SHORT).show();
-                            }).addOnFailureListener(e-> {
-                                loading(false);
-                                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                            });
-
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    // Handle errors here
-                });*/
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
     }
 

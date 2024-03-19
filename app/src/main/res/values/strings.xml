@@ -18,4 +18,7 @@
     <string name="enter_purchase_price">Enter Purchase Price</string>
     <string name="enter_sell_price">Enter Sells Price</string>
     <string name="please_wait">Please Wait…</string>
+    <string name="fab_description">Create Items</string>
+    <string name="items">Items</string>
+    <string name="party">Party</string>
 </resources>

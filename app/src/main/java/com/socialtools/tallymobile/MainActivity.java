@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
         });
 
-        binding.itemCreateBtn.setOnClickListener(v->{
-
+        binding.fabButton.setOnClickListener(v->{
 
            startActivity(new Intent(getApplicationContext(),CreateItemActivity.class));
+
         });
     }
 

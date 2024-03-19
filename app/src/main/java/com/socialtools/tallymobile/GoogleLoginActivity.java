@@ -96,7 +96,7 @@ public class GoogleLoginActivity extends AppCompatActivity {
 
     private void checkUserData(){
 
-        apiHandler.makeApiCall(Constants.KEY_ISEXIST_USER_DATA_API+auth.getUid(),
+        apiHandler.makeApiCall(Constants.KEY_IS_EXIST_USER_DATA_API+auth.getUid(),
                 Request.Method.GET, null, new ApiHandler.ApiResponseListener() {
                     @Override
                     public void onSuccess(JSONObject response) {
