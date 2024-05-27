@@ -1,214 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
     android:overScrollMode="never"
     android:scrollbars="none"
     android:clipToPadding="false"
-    tools:context=".CreateItemActivity">
-
-    <RelativeLayout
+    tools:context=".activities.CreateItemActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
-
-
-        <com.google.android.material.card.MaterialCardView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_12sdp"
-            app:strokeColor="@color/secondaryText"
-            android:backgroundTint="@color/secondaryColor"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical"
-            app:cardCornerRadius="@dimen/_14sdp">
+            android:background="@color/primaryColor"
+            android:minHeight="?android:attr/actionBarSize"
+            android:theme="@style/Theme.AppCompat.Light">
 
-            <LinearLayout
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageBack"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_12sdp"
+                android:background="@drawable/background_icon"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_back"
+                android:tint="@color/white" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/headingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:gravity="center"
+                android:text="@string/create_item"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appBarLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                app:strokeColor="@color/secondaryText"
+                android:backgroundTint="@color/secondaryColor"
+                android:focusableInTouchMode="true"
                 android:orientation="vertical"
-                android:padding="30dp">
+                app:cardCornerRadius="@dimen/_14sdp">
 
-                <ScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/_2sdp"
-                    android:scrollbars="none"
-                    tools:ignore="ScrollViewCount">
-                    <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/headertitle"
-                            style="@style/viewParent"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"
-                            android:text="@string/enter_the_detail_to_create_new_item"
-                            android:textSize="@dimen/headerTextSize"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputProductName"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextProductName"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/product_name"
-                                android:inputType="text"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputPathNumber"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextPathNumber"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/path_number"
-                                android:inputType="textEmailAddress"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputUom"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextUom"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/enter_units"
-                                android:inputType="textNoSuggestions"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputHsnCode"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextHsnCode"
-                                style="@style/modifiedEditText"
-                                android:inputType="number"
-                                android:hint="@string/enter_hsn_code"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputMrp"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextMrp"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/enter_mrp"
-                                android:inputType="number"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputGst"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextGst"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/enter_gst_percentage"
-                                android:inputType="number"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputPurchasePrice"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextPurchasePrice"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/enter_purchase_price"
-                                android:inputType="number"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputSellPrice"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextSellPrice"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/enter_sell_price"
-                                android:inputType="number"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputDescription"
-                            style="@style/parent"
-                            android:layout_height="@dimen/_45ssp">
-
-                            <androidx.appcompat.widget.AppCompatEditText
-                                android:id="@+id/editTextDescription"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/product_description"
-                                android:maxLines="5"
-                                android:inputType="textMultiLine"/>
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <FrameLayout
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_2sdp"
+                        android:scrollbars="none">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            android:animateLayoutChanges="true">
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/createItemBtn"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="5dp"
-                                app:strokeColor="?attr/colorControlNormal"
-                                app:strokeWidth="1dp"
-                                app:cornerRadius="@dimen/_10sdp"
-                                android:backgroundTint="@color/googleBlue"
-                                android:text="@string/create_item"
-                                android:textAllCaps="false"
-                                android:textColor="@color/wheatWhite"
-                                android:textSize="@dimen/_14ssp" />
-                            <ProgressBar
-                                android:id="@+id/pBar1"
-                                android:layout_width="@dimen/_25sdp"
-                                android:layout_height="@dimen/_25sdp"
-                                android:layout_gravity="center"
-                                android:visibility="invisible" />
-                        </FrameLayout>
-                    </LinearLayout>
-                </ScrollView>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </RelativeLayout>
+                            android:orientation="vertical">
 
-</ScrollView>
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/headertitle"
+                                style="@style/viewParent"
+                                android:textAlignment="center"
+                                android:layout_gravity="center"
+                                android:text="@string/enter_the_detail_to_create_new_item"
+                                android:textSize="@dimen/headerTextSize"
+                                android:textStyle="bold" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputProductName"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextProductName"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/product_name"
+                                    android:inputType="text"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputPathNumber"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextPathNumber"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/path_number"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputUom"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextUom"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/enter_units"
+                                    android:inputType="textNoSuggestions"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputHsnCode"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextHsnCode"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="number"
+                                    android:hint="@string/enter_hsn_code"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputMrp"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextMrp"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/enter_mrp"
+                                    android:inputType="number"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputGst"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextGst"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/enter_gst_percentage"
+                                    android:inputType="number"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputPurchasePrice"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextPurchasePrice"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/enter_purchase_price"
+                                    android:inputType="number"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputSellPrice"
+                                style="@style/parent"
+                                android:layout_height="@dimen/_45ssp"
+                                android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextSellPrice"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/enter_sell_price"
+                                    android:inputType="number"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputDescription"
+                                style="@style/parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/editTextDescription"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/product_description"
+                                    android:maxLines="10"
+                                    android:inputType="textMultiLine"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:animateLayoutChanges="true">
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/createItemBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_45sdp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="5dp"
+                                    app:strokeColor="?attr/colorControlNormal"
+                                    app:strokeWidth="1dp"
+                                    app:cornerRadius="@dimen/_10sdp"
+                                    android:backgroundTint="@color/googleBlue"
+                                    android:text="@string/create"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/wheatWhite"
+                                    android:textSize="@dimen/_14ssp" />
+                                <ProgressBar
+                                    android:id="@+id/pBar1"
+                                    android:layout_width="@dimen/_25sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:layout_gravity="center"
+                                    android:visibility="invisible" />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+</RelativeLayout>

@@ -33,7 +33,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:textSize="@dimen/_18ssp"
-                android:textColor="@color/secondaryText"/>
+                android:textColor="?attr/colorControlNormal"/>
 
         </LinearLayout>
 

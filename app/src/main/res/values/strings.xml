@@ -21,4 +21,18 @@
     <string name="fab_description">Create Items</string>
     <string name="items">Items</string>
     <string name="party">Party</string>
+    <string name="price_purchase">Purchase Price</string>
+    <string name="sells_price">Sells Price</string>
+    <string name="item_name">Item Name</string>
+    <string name="mrp">MRP</string>
+    <string name="item_list">Item List</string>
+    <string name="create">Create</string>
+    <string name="alter_item">Alter Item</string>
+    <string name="alter">Alter</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="connect">Connect</string>
+    <string name="amp_tally_on_the_go">And Tally on the go.!</string>
+    <string name="simplify_accounting_tasks_with_tally_anywhere">Simplify Accounting Tasks with Tally Anywhere</string>
+    <string name="create_ledger">Create Ledger</string>
+
 </resources>

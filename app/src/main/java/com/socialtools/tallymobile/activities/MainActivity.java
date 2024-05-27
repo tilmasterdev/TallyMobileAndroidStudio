@@ -1,15 +1,12 @@
-package com.socialtools.tallymobile;
+package com.socialtools.tallymobile.activities;
 
-import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -18,9 +15,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.socialtools.tallymobile.Utils.ApiCaller;
+import com.socialtools.tallymobile.R;
 import com.socialtools.tallymobile.Utils.ApiHandler;
 import com.socialtools.tallymobile.Utils.Constants;
 import com.socialtools.tallymobile.Utils.LoadingDialog;
@@ -75,11 +71,10 @@ public class MainActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
         });
 
-        binding.fabButton.setOnClickListener(v->{
+        binding.itemsCardView.setOnClickListener(v-> startActivity(new Intent(getApplicationContext(),ItemsActivity.class)));
+        binding.ledgerCardview.setOnClickListener(v-> startActivity(new Intent(getApplicationContext(),LedgerActivity.class)));
 
-           startActivity(new Intent(getApplicationContext(),CreateItemActivity.class));
 
-        });
     }
 
     @Override
@@ -89,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getUserDetails(){
-
+        loadingDialog.show();
 
         apiHandler.makeApiCall(Constants.KEY_GET_USER_DATA_API + preferenceManager.getString(Constants.KEY_AUTH_ID),
                 Request.Method.GET, null, new ApiHandler.ApiResponseListener() {
@@ -134,12 +129,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
-
-
-
 
     }
 

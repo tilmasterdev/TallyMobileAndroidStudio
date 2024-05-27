@@ -4,22 +4,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@color/primaryColor"
-    tools:context=".GoogleLoginActivity">
+    android:orientation="vertical"
+    android:background="@color/secondaryColor"
+    tools:context=".activities.GoogleLoginActivity">
 
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/google_sign_in"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign in with Google"
-        app:strokeColor="?attr/colorControlNormal"
-        android:backgroundTint="@color/wheatWhite"
-        android:textColor="@color/black"
+        android:orientation="vertical">
 
-        android:drawableLeft="@drawable/ic_google"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_450sdp"
+            app:lottie_autoPlay="true"
+            android:layout_marginTop="-150dp"
+            app:lottie_rawRes="@raw/av_signin"
+            app:lottie_loop="true" />
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginStart="@dimen/_12sdp"
+           android:layout_marginTop="-180dp">
+
+           <com.google.android.material.textview.MaterialTextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/googleYellow"
+               android:text="@string/connect"
+               android:layout_gravity="bottom"
+               android:textSize="@dimen/_35ssp"
+               android:textStyle="bold" />
+
+           <com.google.android.material.textview.MaterialTextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="bottom"
+               android:textColor="?attr/colorControlNormal"
+               android:text="@string/amp_tally_on_the_go"
+               android:textSize="@dimen/_22ssp"
+               android:textStyle="bold" />
+
+       </LinearLayout>
+
+    </LinearLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+        android:gravity="center_vertical"
+       android:layout_weight="1"
+       android:orientation="vertical"
+       android:backgroundTint="@color/primaryColor"
+       android:background="@drawable/background_content_top">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:padding="@dimen/_10sdp"
+           android:layout_marginStart="@dimen/_12sdp"
+           android:layout_marginEnd="@dimen/_12sdp">
+
+           <com.google.android.material.textview.MaterialTextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="@color/wheatWhite"
+               android:text="@string/app_name"
+               android:layout_gravity="center"
+               android:textAlignment="center"
+               android:padding="@dimen/_2sdp"
+               android:textSize="@dimen/_20ssp"
+               android:textStyle="bold" />
+
+           <com.google.android.material.textview.MaterialTextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:textAlignment="center"
+               android:textColor="@color/wheatWhite"
+               android:padding="@dimen/_2sdp"
+               android:textStyle="bold"
+               android:text="@string/simplify_accounting_tasks_with_tally_anywhere"
+               android:textSize="@dimen/_10ssp" />
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_1sdp"
+               android:layout_marginTop="@dimen/_10sdp"
+               android:background="@color/wheatWhite"/>
+       </LinearLayout>
+
+       <com.google.android.material.button.MaterialButton
+           android:id="@+id/google_sign_in"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/sign_in_with_google"
+           app:strokeColor="?attr/colorControlNormal"
+           app:strokeWidth="@dimen/_1sdp"
+           android:layout_gravity="center"
+           android:backgroundTint="@color/secondaryColor"
+           android:textColor="@color/primaryText"
+           android:textSize="@dimen/_14sdp"
+           android:layout_margin="@dimen/_26sdp"
+          android:drawableLeft="@drawable/ic_google" />
+   </LinearLayout>
+
+
+
+
+
+
+
+
+
+
 
 
 

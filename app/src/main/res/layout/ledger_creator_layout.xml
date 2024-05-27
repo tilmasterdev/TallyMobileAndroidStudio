@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:windowSoftInputMode="adjustResize"
+    android:animateLayoutChanges="true"
+    android:gravity="center"
+    android:padding="@dimen/_16sdp">
+
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:scrollbars="none">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <com.google.android.material.textview.MaterialTextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textAlignment="center"
+               android:textStyle="bold"
+               android:textColor="@color/secondaryText"
+               android:textSize="@dimen/_12ssp"
+               android:text="Enter following information" />
+
+           <LinearLayout
+               android:id="@+id/textInputIsAdmin"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_45ssp"
+               android:layout_marginTop="@dimen/signup_text_margin_top"
+               android:orientation="horizontal">
+
+               <com.google.android.material.materialswitch.MaterialSwitch
+                   android:id="@+id/isBillWiseSwitch"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_gravity="center"
+                   android:text="Bill wise no"
+                   android:paddingStart="@dimen/_12sdp"
+                   android:paddingEnd="@dimen/_5sdp"
+                   android:textSize="@dimen/newsMoreTextSize"/>
+
+           </LinearLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputFirst"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/signup_text_margin_top"
+               android:labelFor="@id/editTextFirst"
+               android:layout_marginBottom="1dp">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextFirst"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textPersonName"
+                   android:maxLines="1"
+                   android:labelFor="@id/editTextFirst"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter name"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputSecond"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextSecond"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="1dp">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextSecond"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textShortMessage"
+                   android:labelFor="@id/editTextSecond"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter Alias"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputThird"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextThird"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="1dp">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextThird"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextThird"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textShortMessage"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter Parent"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputForth"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextForth"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="@dimen/signup_text_margin_top">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextForth"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextForth"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textCapCharacters"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter Pan number"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputSixth"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/textInputSixth"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="@dimen/signup_text_margin_top">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextSixth"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextSixth"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textCapCharacters"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter GST number"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputSeventh"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextSeventh"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="@dimen/signup_text_margin_top">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextSeventh"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextSeventh"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textPostalAddress"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter address line 1"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputEight"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextEight"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="@dimen/signup_text_margin_top">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextEight"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextEight"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textPostalAddress"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter address line 2"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputNinth"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextNinth"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="@dimen/signup_text_margin_top">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextNinth"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextNinth"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textPostalAddress"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter address line 3"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputTenth"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextTenth"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="@dimen/signup_text_margin_top">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextTenth"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextTenth"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textPostalAddress"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter state name"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/textInputEleventh"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:labelFor="@id/editTextEleventh"
+               android:layout_marginTop="1dp"
+               android:layout_marginBottom="@dimen/signup_text_margin_top">
+
+               <androidx.appcompat.widget.AppCompatEditText
+                   android:id="@+id/editTextEleventh"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_12ssp"
+                   android:labelFor="@id/editTextEleventh"
+                   android:imeOptions="actionDone"
+                   android:importantForAutofill="no"
+                   android:inputType="textPostalAddress"
+                   android:maxLines="1"
+                   android:focusableInTouchMode="true"
+                   android:hint="Enter country name"/>
+           </com.google.android.material.textfield.TextInputLayout>
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/submitBtn"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_45sdp"
+               android:text="Create now"
+               android:layout_gravity="center_horizontal"
+               app:cornerRadius="@dimen/_10sdp"
+               android:textSize="@dimen/_14ssp"
+               app:strokeWidth="0dp"
+               android:textAllCaps="false"
+               android:textColor="@color/fixed_text"
+               android:backgroundTint="@color/googleYellow"/>
+       </LinearLayout>
+   </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

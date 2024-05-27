@@ -15,20 +15,26 @@
         android:theme="@style/Theme.TallyMobile"
         tools:targetApi="31">
         <activity
-            android:name=".CreateItemActivity"
+            android:name=".activities.LedgerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ItemsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CreateItemActivity"
             android:exported="false"
             android:screenOrientation="nosensor"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".TallyCredentialsActivity"
+            android:name=".activities.TallyCredentialsActivity"
             android:exported="false"
             android:screenOrientation="nosensor"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".GoogleLoginActivity"
+            android:name=".activities.GoogleLoginActivity"
             android:exported="true"
             android:screenOrientation="nosensor"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true" />
     </application>
 

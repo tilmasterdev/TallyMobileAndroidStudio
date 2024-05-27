@@ -10,7 +10,7 @@
     <color name="secondaryText">#E6E0E9</color>
     <color name="input_background">#22303C</color> <!-- Dark input background color -->
     <color name="icon_background">#20FFFFFF</color>
-    <color name="fab_text">#FF49454F</color>
+    <color name="fixed_text">#FF49454F</color>
 
 
     <color name="wheatWhite">#f9f9f9</color>

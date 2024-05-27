@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
-    tools:context=".MainActivity">
+    android:background="@color/secondaryColor"
+    tools:context=".activities.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:maxLines="1"
-                android:textColor="@color/primaryText"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />
 
@@ -67,6 +67,7 @@
             android:orientation="horizontal">
             <!-- First CardView -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/itemsCardView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -102,6 +103,7 @@
 
             <!-- Second CardView -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/ledgerCardview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -122,12 +124,13 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_5sdp"
+                        android:src="@drawable/ic_edit"
                          android:layout_gravity="center_horizontal"/>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Not implemented yet"
+                        android:text="Ledger"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_1sdp"/>
 
@@ -137,27 +140,7 @@
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom|end"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/fab_description"
-        android:text="@string/fab_description"
-        android:textColor="@color/fab_text"
-        app:backgroundTint="@color/googleYellow"
-        app:cornerRadius="@dimen/_60sdp"
-        app:icon="@drawable/ic_create"
-        app:iconTint="@color/fab_text"
-        app:strokeColor="?attr/colorControlNormal"
 
-        app:strokeWidth="1dp" />
 
 
     <!--<LinearLayout

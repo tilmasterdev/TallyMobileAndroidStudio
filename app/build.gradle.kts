@@ -11,8 +11,8 @@ android {
         applicationId = "com.socialtools.tallymobile"
         minSdk = 26
         targetSdk = 34
-        versionCode = 3
-        versionName = "close-beta-3"
+        versionCode = 5
+        versionName = "close-beta-5"
         multiDexEnabled =true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,5 +52,8 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     implementation ("com.makeramen:roundedimageview:2.3.0")
     implementation ("com.android.volley:volley:1.2.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
 }

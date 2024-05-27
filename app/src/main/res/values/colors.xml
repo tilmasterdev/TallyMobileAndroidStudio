@@ -6,11 +6,11 @@
     <color name="wheatWhite">#f9f9f9</color>
     <color name="primaryColor">#5f7fff</color>        <!-- #0395c8-->
     <color name="secondaryColor">#fbfaf2</color>
-    <color name="primaryText">#E6E0E9</color>
+    <color name="primaryText">#FF49454F</color>
     <color name="secondaryText">#15202B</color>
     <color name="input_background">#ECECEC</color>
     <color name="icon_background">#20FFFFFF</color>
-    <color name="fab_text">#FF49454F</color>
+    <color name="fixed_text">#FF49454F</color>
 
 
     <color name="googleRed">#DB4437</color>

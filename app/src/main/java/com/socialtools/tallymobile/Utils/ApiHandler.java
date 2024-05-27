@@ -12,7 +12,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 
 public class ApiHandler {
-    private static final String TAG = ApiHandler.class.getSimpleName();
+
 
     private final RequestQueue requestQueue;
 

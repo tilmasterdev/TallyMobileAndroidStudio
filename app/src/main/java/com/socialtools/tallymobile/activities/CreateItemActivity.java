@@ -1,30 +1,23 @@
-package com.socialtools.tallymobile;
+package com.socialtools.tallymobile.activities;
 
 import static android.content.ContentValues.TAG;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.socialtools.tallymobile.Models.ItemModel;
+import com.socialtools.tallymobile.R;
 import com.socialtools.tallymobile.Utils.ApiHandler;
 import com.socialtools.tallymobile.Utils.Constants;
 import com.socialtools.tallymobile.Utils.LoadingDialog;
 import com.socialtools.tallymobile.Utils.PreferenceManager;
 import com.socialtools.tallymobile.databinding.ActivityCreateItemBinding;
-
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -32,10 +25,10 @@ public class CreateItemActivity extends AppCompatActivity {
 
     private ActivityCreateItemBinding binding;
     private String productName,partNumber,uom,hsnCode,mrp,gst,purchasePrice,sellPrice,productDescription;
-    private FirebaseFirestore database;
     private PreferenceManager preferenceManager;
     private LoadingDialog loadingDialog;
     private ApiHandler apiHandler ;
+    private ItemModel itemModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +36,31 @@ public class CreateItemActivity extends AppCompatActivity {
         binding = ActivityCreateItemBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         apiHandler = new ApiHandler(this);
-        database = FirebaseFirestore.getInstance();
         loadingDialog = new LoadingDialog(this);
-        preferenceManager=new PreferenceManager(this);
-        binding.createItemBtn.setOnClickListener(v-> checkValidSignUpDetails());
+        preferenceManager = new PreferenceManager(this);
+        init();
 
+    }
 
+    private void init(){
+        itemModel = (ItemModel)getIntent().getSerializableExtra(Constants.KEY_ITEMS);
+        if (itemModel!=null){
+            binding.headingTextView.setText(R.string.alter_item);
+            binding.createItemBtn.setText(R.string.alter);
+            binding.headingTextView.setText("Change the details\nto alter this item");
+
+            binding.editTextProductName.setText(itemModel.itemName);
+            binding.editTextDescription.setText(itemModel.itemDescription);
+            binding.editTextPathNumber.setText(itemModel.itemPartnumber);
+            binding.editTextUom.setText(itemModel.itemUom);
+            binding.editTextHsnCode.setText(itemModel.itemHsncode);
+            binding.editTextMrp.setText(itemModel.itemMrp);
+            binding.editTextGst.setText(itemModel.itemGst);
+            binding.editTextPurchasePrice.setText(itemModel.itemPp);
+            binding.editTextSellPrice.setText(itemModel.itemSp);
+        }
+        binding.imageBack.setOnClickListener(v->onBackPressed());
+        binding.createItemBtn.setOnClickListener(v-> checkValidDetails());
     }
 
 
@@ -66,7 +78,7 @@ public class CreateItemActivity extends AppCompatActivity {
 
 
 
-    private void checkValidSignUpDetails() {
+    private void checkValidDetails() {
         productName = Objects.requireNonNull(binding.editTextProductName.getText()).toString().trim();
         partNumber = Objects.requireNonNull(binding.editTextPathNumber.getText()).toString().trim();
         uom = Objects.requireNonNull(binding.editTextUom.getText()).toString().trim();
@@ -97,7 +109,13 @@ public class CreateItemActivity extends AppCompatActivity {
                                         if(!productDescription.isEmpty()){
                                             binding.textInputDescription.setError(null);
 
-                                            createItemInServer();
+
+
+                                            if (itemModel!=null) {
+                                                updateItemInServer();
+                                            }else {
+                                                createItemInServer();
+                                            }
 
                                         }else{
                                             binding.textInputDescription.setError("Please enter product description");
@@ -191,10 +209,65 @@ public class CreateItemActivity extends AppCompatActivity {
                 });
 
     }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+
+
+
+    private void updateItemInServer(){
+        loading(true);
+
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put(Constants.KEY_PRODUCT_NAME, productName);
+            requestBody.put(Constants.KEY_PRODUCT_DESCRIPTION, productDescription);
+            requestBody.put(Constants.KEY_PRODUCT_PART_NUMBER, partNumber);
+            requestBody.put(Constants.KEY_PRODUCT_UOM, uom);
+            requestBody.put(Constants.KEY_PRODUCT_GST,gst);
+            requestBody.put(Constants.KEY_PRODUCT_HSN_CODE, hsnCode);
+            requestBody.put(Constants.KEY_PRODUCT_MRP, mrp);
+            requestBody.put(Constants.KEY_PRODUCT_PURCHASE_PRICE, purchasePrice);
+            requestBody.put(Constants.KEY_PRODUCT_SELLS_PRICE, sellPrice);
+            requestBody.put(Constants.KEY_PRODUCT_ALTER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        apiHandler.makeApiCall(Constants.KEY_UPDATE_ITEM_API+itemModel.itemId,
+                Request.Method.PUT, requestBody, new ApiHandler.ApiResponseListener() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        // Handle success response
+                        try {
+
+                            boolean success = response.getBoolean(Constants.KEY_SUCCESS);
+                           String message = response.getString("message");
+
+                            loading(false);
+                            loadingDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            if (success) {
+                                finish();
+                            }
+
+                        } catch (JSONException e) {
+                            loading(false);
+                            loadingDialog.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Error parsing JSON response", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(VolleyError error) {
+                        // Handle error
+                        loadingDialog.dismiss();
+                        loading(false);
+
+                        Toast.makeText(getApplicationContext(), "Error: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
+
 
 }
